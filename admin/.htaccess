@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^login$ ./login.php [L]
+RewriteRule ^auth$ ./auth.php [L]
+RewriteRule ^app/([^?]*)/add$ /admin/modulos/$1/form.php [L]
+RewriteRule ^app/([^?]*)/aulas/edit/([^?]*)/([^?]*)/([^?]*)$ /admin/modulos/$1/aulas.php?id_secao=$2&id_curso=$3&id=$4 [L,QSA]
+RewriteRule ^app/([^?]*)/edit/([^?]*)$ /admin/modulos/$1/form.php?id=$2 [L,QSA]
+RewriteRule ^app/([^?]*)/secoes/([^?]*)$ /admin/modulos/$1/secoes.php?id=$2 [L,QSA]
+RewriteRule ^app/([^?]*)/instrutores/([^?]*)$ /admin/modulos/$1/instrutores.php?id=$2 [L,QSA]
+RewriteRule ^app/([^?]*)/aulas/([^?]*)/([^?]*)$ /admin/modulos/$1/aulas.php?id_curso=$2&id_secao=$3 [L,QSA]
+RewriteRule ^app/([^?]*)/delete/([^?]*)$ /admin/modulos/$1/action.php?id=$2&action=delete [L]
+RewriteRule ^app/([^?]*)/photos/([^?]*)$ /admin/modulos/galerias/photos.php?id=$2 [L,QSA]
+RewriteRule ^app/([^?]*)$ /admin/modulos/$1/index.php [L]
+
+ErrorDocument 404 /admin/404.php
