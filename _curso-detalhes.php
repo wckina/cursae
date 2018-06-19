@@ -13,6 +13,27 @@ if(!$getCurso){
 $getNumeroAulas = $aulas->getNumeroAulas($getCurso->id);
 define('META_TITLE', $getCurso->nome);
 define('META_DESCRIPTION', $getCurso->nome);
+
+//Avaliações
+require_once("admin/modulos/avaliacoes/avaliacoes.class.php");
+$avaliacoes = new Avaliacoes();
+$getAvaliacoes = $avaliacoes->getByCurso($getCurso->id);
+
+var_dump($getAvaliacoes);
+
+$nAvaliacoes = 0;
+$sumAvaliacoes = 0;
+foreach ($getAvaliacoes as $showAvaliacoes) {
+	$sumAvaliacoes= $sumAvaliacoes + $showAvaliacoes->estrelas;
+	$nAvaliacoes ++;
+}
+
+$media = $sumAvaliacoes / $nAvaliacoes;
+$media = number_format((float)$media, 1, '.', '');
+
+//var_dump($showAvaliacoes);
+
+
 require_once("inc/header.php");
 ?>
 
@@ -190,7 +211,7 @@ require_once("inc/header.php");
 
 				<div class="large-3 medium-3 cell margin-top-1">
 					<div class="rate-box">
-						<h2>4.8</h2>
+						<h2><?php echo $media; ?></h2>
 						<img src="/img/stars-4" alt="stars" title="Avaliação média">
 						<h3>Avaliação média</h3>
 					</div>
@@ -210,7 +231,7 @@ require_once("inc/header.php");
 							<div class="line-out"><div class="line-inner" style="width: 67%;"></div></div>
 						</div>
 						<div class="rate-line-star">
-							<span>88%</span> <img src="/img/stars-5" alt="stars" title="Avaliação média">
+							<span>88%</span> <img src="/img/stars-4" alt="stars" title="Avaliação média">
 						</div>				
 					</div><!--wrapper-line-box-->
 
@@ -219,7 +240,7 @@ require_once("inc/header.php");
 							<div class="line-out"><div class="line-inner" style="width: 67%;"></div></div>
 						</div>
 						<div class="rate-line-star">
-							<span>88%</span> <img src="/img/stars-5" alt="stars" title="Avaliação média">
+							<span>88%</span> <img src="/img/stars-3" alt="stars" title="Avaliação média">
 						</div>				
 					</div><!--wrapper-line-box-->										
 
@@ -228,7 +249,7 @@ require_once("inc/header.php");
 							<div class="line-out"><div class="line-inner" style="width: 67%;"></div></div>
 						</div>
 						<div class="rate-line-star">
-							<span>88%</span> <img src="/img/stars-5" alt="stars" title="Avaliação média">
+							<span>88%</span> <img src="/img/stars-2" alt="stars" title="Avaliação média">
 						</div>				
 					</div><!--wrapper-line-box-->
 
@@ -237,7 +258,7 @@ require_once("inc/header.php");
 							<div class="line-out"><div class="line-inner" style="width: 67%;"></div></div>
 						</div>
 						<div class="rate-line-star">
-							<span>88%</span> <img src="/img/stars-5" alt="stars" title="Avaliação média">
+							<span>88%</span> <img src="/img/stars-1" alt="stars" title="Avaliação média">
 						</div>				
 					</div><!--wrapper-line-box-->										
 

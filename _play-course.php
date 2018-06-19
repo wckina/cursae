@@ -113,7 +113,7 @@ $verifyAvaliacao = $avaliacoes->getByCursoEstudante($getCurso->id,$_SESSION['est
 								</form>
 								<?php } else { ?>
 									<?php if($verifyAvaliacao->status == 0){?> 
-									<h6><b>★ Sua avaliação:</b> (Em revisão)<br><i><?php echo $verifyAvaliacao->comentario; ?></i></h6>
+									<h6><b> Sua avaliação: <?php echo $verifyAvaliacao->estrelas;?> estrelas ★</b> (Em revisão)<br><i><?php echo $verifyAvaliacao->comentario; ?></i></h6>
 									<?php } ?>
 								<?php } ?>
 
